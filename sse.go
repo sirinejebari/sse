@@ -99,7 +99,6 @@ func format(id, event string, dataLen int) (p []byte) {
 		i += 1 + dataLen
 	}
 	copy(p[i:], "\n\n")
-
 	// TODO: id
 
 	return
@@ -167,7 +166,8 @@ func (s *Streamer) SendJSON(id, event string, v interface{}) error {
 		return err
 	}
 	p := format(id, event, len(data))
-	copy(p[len(p)-(2+len(data)):], data) // fill in data
+	copy(p[len(p)-(2+len(data)):], data)
+	copy(p, "\n\n") // fill in data
 	s.event <- p
 	return nil
 }
