@@ -247,6 +247,7 @@ func (s *Streamer) ServeHTTP(w http.ResponseWriter, _ *http.Request) {
 	h.Set("Cache-Control", "no-cache")
 	h.Set("Connection", "keep-alive")
 	h.Set("Content-Type", "text/event-stream")
+	h.Set("Access-Control-Allow-Origin", "*")
 
 	// Connect new client
 	cl := make(client, s.bufSize)
